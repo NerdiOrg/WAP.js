@@ -1,7 +1,7 @@
 function ajax(object){
-	if(object.method.length > 0 && typeof object.method != undefined){
+	if(object.method.length > 0 && typeof object.method != 'undefined'){
 		var Request = new XMLHttpRequest();
-		if(typeof object.url != 'undefined' && object.url.length > 0 && typeof object.method != 'undefined' && object.method.length > 0){
+		if(typeof object.url != 'undefined' && object.url.length > 0){
 			if(typeof object.data === "object"){
 				var encodeURIString = "";
 				for (var objProperty in object.data){
@@ -45,14 +45,19 @@ function ajax(object){
 					object.success(Request.responseText);
 				} else {
 					console.log("The XMLHttpRequest succeeded, but no success function was supplied to the ajax() function.");
+					return true;
 				}
 			} else {
 				if(typeof object.fail == "function"){
 					object.fail(Request.statusText);
 				} else {
 					console.log("The XMLHttpRequest failed, but no fail function was supplied to the ajax() function.");
+					return false;
 				}
 			}
 		} // onload func
+	} else {
+		console.log("You must supply the 'method' key, and it cannot be of length 0 or undefined.")
+		return false;
 	}
 }
