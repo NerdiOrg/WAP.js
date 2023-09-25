@@ -1,2 +1,2 @@
-# wuJS
-Common JS functions without the bloat of jQuery
+# WAP.js
+Common JS functions I created & used.
